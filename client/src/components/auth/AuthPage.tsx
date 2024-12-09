@@ -1,10 +1,14 @@
 import React from 'react';
-import { Leaf } from 'lucide-react';
-import { AuthForm } from './AuthForm';
+import {AuthForm} from './AuthForm';
+import { Leaf, Menu } from 'lucide-react';
 
-export function AuthPage() {
-  return (
-    <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center p-6">
+
+export const AuthPage = () => (
+  // <div className="flex items-center justify-center h-screen bg-gray-800 text-white">
+  //   <AuthForm />
+  // </div>
+
+  <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center p-6">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-center space-x-2 mb-8">
           <Leaf className="h-8 w-8 text-green-500" />
@@ -21,5 +25,5 @@ export function AuthPage() {
         </p>
       </div>
     </div>
-  );
-}
+  
+);

@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React from "react";
+import { GoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
+// import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Eye, EyeOff, Mail, Lock, LogIn } from 'lucide-react';
 import { AuthMode, AuthFormData } from '../../types/auth';
+import { useState } from 'react';
+
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email'),
@@ -17,7 +22,37 @@ const signupSchema = loginSchema.extend({
   path: ["confirmPassword"],
 });
 
-export function AuthForm() {
+export const AuthForm = () => {
+  const navigate = useNavigate(); // Initialize the useNavigate hook
+
+  // Handle successful login
+  const handleLoginSuccess = (credentialResponse: any) => {
+    console.log("Login Success:", credentialResponse);
+
+    // Get user info from credentialResponse
+    const user = {
+      name: credentialResponse?.profileObj?.name,
+      profilePic: credentialResponse?.profileObj?.imageUrl,
+    };
+
+    // Save user info to localStorage
+    localStorage.setItem("user", JSON.stringify(user));
+
+    // Redirect to the /hero page
+    navigate("/hero");
+  };
+
+  // Handle login failure
+  const handleLoginError = () => {
+    console.error("Login Failed");
+    // Handle login failure logic (e.g., show an error message)
+  };
+
+  // abse mera old code
+
+ 
+
+  //abse sorry
   const [mode, setMode] = useState<AuthMode>('login');
   const [showPassword, setShowPassword] = useState(false);
   
@@ -30,17 +65,22 @@ export function AuthForm() {
     console.log(data);
   };
 
+
   return (
-    <div className="w-full max-w-md mx-auto">
+    <div className="auth-form">
+      {/* <h1>Login</h1> */}
+      
+
+<div className="w-full max-w-md mx-auto">
       <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-xl border border-white/20">
         <h2 className="text-3xl font-bold text-white mb-6 text-center">
           {mode === 'login' ? 'Welcome Back' : 'Create Account'}
         </h2>
 
-        <button className="w-full bg-white text-gray-800 font-semibold py-3 px-4 rounded-lg mb-6 flex items-center justify-center space-x-2 hover:bg-gray-100 transition-colors">
-          <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5" />
-          <span>Continue with Google</span>
-        </button>
+        <GoogleLogin
+        onSuccess={handleLoginSuccess} // Use the success handler
+        onError={handleLoginError}      // Use the error handler
+      />
 
         <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
@@ -134,5 +174,6 @@ export function AuthForm() {
         </p>
       </div>
     </div>
+    </div>
   );
-}
+};
