@@ -97,6 +97,13 @@ export function Navbar() {
 
         {/* Links and Actions */}
         <div className="hidden md:flex items-center space-x-8">
+
+        <Link
+            to="/deposit-waste"
+            className="text-gray-600 hover:text-green-600 transition-colors"
+          >
+            Deposit Waste
+          </Link>
           <Link
             to="/features"
             className="text-gray-600 hover:text-green-600 transition-colors"
