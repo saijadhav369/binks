@@ -3,5 +3,22 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es6",
+    "strict": true,                // Enables strict type checking
+    "skipLibCheck": true,          // Skips type checking of declaration files
+    "forceConsistentCasingInFileNames": true, // Ensures consistent casing in imports
+    "outDir": "./dist",            // Output directory for compiled files
+    "baseUrl": ".",                // Base URL for module resolution
+    "paths": {                     // Path mapping for cleaner imports
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*"],          // Includes all files in the `src` directory
+  "exclude": ["node_modules", "dist"] // Excludes `node_modules` and `dist`
 }

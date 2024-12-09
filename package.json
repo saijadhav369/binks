@@ -13,6 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^9.1.0"
+    "concurrently": "^9.1.0",
+    "ethers": "^6.13.4",
+    "lucide-react": "^0.468.0",
+    "react-router-dom": "^7.0.2"
   }
 }
