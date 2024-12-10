@@ -59,7 +59,7 @@ const DepositWaste = () => {
         </h2>
         <div className="mb-4">
           <label className="block text-gray-700 font-semibold">
-            Weight (kg):
+            Weight (unit):
           </label>
           <input
             type="number"
@@ -67,7 +67,7 @@ const DepositWaste = () => {
             value={weight}
             onChange={(e) => setWeight(e.target.value)}
             className="border rounded px-4 py-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            placeholder="Enter weight in kg"
+            placeholder="Enter weight"
           />
         </div>
         <div className="mb-4">
