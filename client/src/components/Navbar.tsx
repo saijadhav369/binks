@@ -97,8 +97,7 @@ export function Navbar() {
 
         {/* Links and Actions */}
         <div className="hidden md:flex items-center space-x-8">
-
-        <Link
+          <Link
             to="/deposit-waste"
             className="text-gray-600 hover:text-green-600 transition-colors"
           >
@@ -133,7 +132,7 @@ export function Navbar() {
                   alt="ECO Coin Logo"
                   className="w-12 h-12 mr-0" // Adjust the size as needed
                 />
-                ECO: {balance}
+                ECO: {balance ? (parseFloat(balance) / 10 ** 18).toFixed(4) : "0.0000"}
               </span>
               <button className="bg-gray-300 text-black px-6 py-2 rounded-full cursor-default">
                 Connected
