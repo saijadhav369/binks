@@ -13,6 +13,11 @@ const DepositWaste = () => {
   const [status, setStatus] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
+  // NEW: Hardcoded total recyclable waste and target (for progress bar)
+  const totalRecycled = 42; // Example value (in kg)
+  const recyclingTarget = 100; // Target weight (in kg)
+  const recyclingPercentage = (totalRecycled / recyclingTarget) * 100;
+
   const depositWaste = async () => {
     console.log("Wallet Address:", walletAddress);
     if (!walletAddress) {
@@ -116,6 +121,22 @@ const DepositWaste = () => {
             )}
           </div>
         )}
+        {/* NEW: Recycling Progress Bar */}
+        <div className="mt-6">
+          <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">
+            Recycling Progress
+          </h3>
+          <div className="relative w-full h-6 bg-gray-300 rounded-full overflow-hidden">
+            <div
+              className="absolute top-0 left-0 h-full bg-gradient-to-r from-green-400 to-green-600"
+              style={{ width: `${recyclingPercentage}%` }}
+            ></div>
+          </div>
+          <div className="flex justify-between text-sm text-gray-700 mt-2">
+            <span>{totalRecycled} kg Recycled</span>
+            <span>{recyclingTarget} kg Goal</span>
+          </div>
+        </div>
       </div>
     </div>
   );
